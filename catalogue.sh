@@ -30,10 +30,10 @@ npm install
 echo ">>>>>>>>>>>>>>>> Install mongo client <<<<<<<<<<<<<<<<"
 yum install mongodb-org-shell -y
 
-echo ">>>>>>>>>>>>>>>> load catalogue schema <<<<<<<<<<<<<<<<"
+echo ">>>>>>>>>>>>>>>> Load catalogue schema <<<<<<<<<<<<<<<<"
 mongo --host mongodb.varundevops.online </app/schema/catalogue.js
 
-echo ">>>>>>>>>>>>>>>> start catalogue service <<<<<<<<<<<<<<<<"
+echo ">>>>>>>>>>>>>>>> Start catalogue service <<<<<<<<<<<<<<<<"
 systemctl daemon-reload
 systemctl enable catalogue
 systemctl restart catalogue
