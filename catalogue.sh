@@ -1,39 +1,39 @@
-echo ">>>>>>>>>>>>>>>> hello world<<<<<<<<<<<<<<<<"
+echo ">>>>>>>>>>>>>>>> Create catalogue service <<<<<<<<<<<<<<<<"
 cp catalogue.service /etc/systemd/system/catalogue.service
 
-echo ">>>>>>>>>>>>>>>> hello world<<<<<<<<<<<<<<<<"
+echo ">>>>>>>>>>>>>>>> Create mongodb repo <<<<<<<<<<<<<<<<"
 cp mongo.repo /etc/yum.repos.d/mongo.repo
 
-echo ">>>>>>>>>>>>>>>> hello world<<<<<<<<<<<<<<<<"
+echo ">>>>>>>>>>>>>>>> Install nodejs repo <<<<<<<<<<<<<<<<"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 
-echo ">>>>>>>>>>>>>>>> hello world<<<<<<<<<<<<<<<<
+echo ">>>>>>>>>>>>>>>> installing nodejs <<<<<<<<<<<<<<<<
 yum install nodejs -y
 
-echo "<<<<<<<<<< hello world >>>>>>>>>>"echo ">>>>>>>>>>>>>>>> hello world<<<<<<<<<<<<<<<<"
+echo ">>>>>>>>>>>>>>>> Create application user <<<<<<<<<<<<<<<<"
 useradd roboshop
 
-echo ">>>>>>>>>>>>>>>> hello world<<<<<<<<<<<<<<<<"
+echo ">>>>>>>>>>>>>>>> Create application directory <<<<<<<<<<<<<<<<"
 mkdir /app
 
-echo ">>>>>>>>>>>>>>>> hello world<<<<<<<<<<<<<<<<"
+echo ">>>>>>>>>>>>>>>> Download application content <<<<<<<<<<<<<<<<"
 curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip
 
-echo ">>>>>>>>>>>>>>>> hello world<<<<<<<<<<<<<<<<"
+echo ">>>>>>>>>>>>>>>> Extract application content <<<<<<<<<<<<<<<<"
 cd /app
 unzip /tmp/catalogue.zip
 cd /app
 
-echo ">>>>>>>>>>>>>>>> hello world<<<<<<<<<<<<<<<<"
+echo ">>>>>>>>>>>>>>>> Download nodejs dependencies <<<<<<<<<<<<<<<<"
 npm install
 
-echo ">>>>>>>>>>>>>>>> hello world<<<<<<<<<<<<<<<<"
+echo ">>>>>>>>>>>>>>>> Install mongo client <<<<<<<<<<<<<<<<"
 yum install mongodb-org-shell -y
 
-echo ">>>>>>>>>>>>>>>> hello world<<<<<<<<<<<<<<<<"
+echo ">>>>>>>>>>>>>>>> load catalogue schema <<<<<<<<<<<<<<<<"
 mongo --host mongodb.varundevops.online </app/schema/catalogue.js
 
-echo ">>>>>>>>>>>>>>>> hello world<<<<<<<<<<<<<<<<"
+echo ">>>>>>>>>>>>>>>> start catalogue service <<<<<<<<<<<<<<<<"
 systemctl daemon-reload
 systemctl enable catalogue
 systemctl restart catalogue
