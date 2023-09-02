@@ -7,7 +7,7 @@ cp mongo.repo /etc/yum.repos.d/mongo.repo
 echo ">>>>>>>>>>>>>>>> Install nodejs repo <<<<<<<<<<<<<<<<"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 
-echo ">>>>>>>>>>>>>>>> installing nodejs <<<<<<<<<<<<<<<<
+echo ">>>>>>>>>>>>>>>> installing nodejs <<<<<<<<<<<<<<<<"
 yum install nodejs -y
 
 echo ">>>>>>>>>>>>>>>> Create application user <<<<<<<<<<<<<<<<"
