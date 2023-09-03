@@ -36,5 +36,5 @@ mongo --host mongodb.varundevops.online </app/schema/catalogue.js
 echo -e "\e[36m>>>>>>>>>>>>>>>> Start catalogue service <<<<<<<<<<<<<<<\e[0m"
 systemctl daemon-reload
 systemctl enable catalogue
-systemctl restart catalogue
+systemctl restart catalogue.
 
