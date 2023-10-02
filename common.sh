@@ -1,7 +1,7 @@
-nodejs() {
+func_nodejs() {
   log=/tmp/roboshop.log
 
-  echo -e "\e[36m>>>>>>>>>>>>>>> Create user service <<<<<<<<<<<<<<<\e[0m"
+  echo -e "\e[36m>>>>>>>>>>>>>>> Create ${component} service <<<<<<<<<<<<<<<\e[0m"
   cp ${component}.service /etc/systemd/system/${component}.service &>>${log}
 
   echo -e "\e[36m>>>>>>>>>>>>>>> Create mongo repo <<<<<<<<<<<<<<<\e[0m"
@@ -44,4 +44,34 @@ nodejs() {
   systemctl daemon-reload &>>${log}
   systemctl enable ${component} &>>${log}
   systemctl restart ${component} &>>${log}
+}
+
+func_java() {
+  echo -e "\e[36m>>>>>>>>>>>>>>> Create user service <<<<<<<<<<<<<<<\e[0m"
+  cp shipping.service /etc/systemd/system/shipping.service
+
+  echo -e "\e[36m>>>>>>>>>>>>>>> Create user service <<<<<<<<<<<<<<<\e[0m"
+  yum install maven -y
+
+  echo -e "\e[36m>>>>>>>>>>>>>>> Create user service <<<<<<<<<<<<<<<\e[0m"
+  useradd roboshop
+
+  echo -e "\e[36m>>>>>>>>>>>>>>> Create user service <<<<<<<<<<<<<<<\e[0m"
+  mkdir /app
+
+  echo -e "\e[36m>>>>>>>>>>>>>>> Create user service <<<<<<<<<<<<<<<\e[0m"
+  curl -L -o /tmp/shipping.zip https://roboshop-artifacts.s3.amazonaws.com/shipping.zip
+  cd /app
+  unzip /tmp/shipping.zip
+  cd /app
+  mvn clean package
+  mv target/shipping-1.0.jar shipping.jar
+
+  yum install mysql -y
+  mysql -h mysql.varundevops.online -uroot -pRoboShop@1 < /app/schema/shipping.sql
+
+  systemctl daemon-reload
+  systemctl enable shipping
+  systemctl start shipping
+
 }
