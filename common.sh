@@ -41,7 +41,7 @@ func_nodejs() {
   echo -e "\e[36m>>>>>>>>>>>>>>> Install nodejs <<<<<<<<<<<<<<<\e[0m"
   yum install nodejs -y &>>${log}
 
-func_appprequ
+ func_appprequ
 
   echo -e "\e[36m>>>>>>>>>>>>>>> Install nodejs dependencies <<<<<<<<<<<<<<<\e[0m"
   npm install &>>${log}
@@ -52,7 +52,7 @@ func_appprequ
   echo -e "\e[36m>>>>>>>>>>>>>>> load user schema <<<<<<<<<<<<<<<\e[0m"
   mongo --host mongodb.varundevops.online </app/schema/${component}.js &>>${log}
 
-func_systemd
+ func_systemd
 }
 
 func_java() {
@@ -62,7 +62,7 @@ func_java() {
   echo -e "\e[36m>>>>>>>>>>>>>>> Install maven <<<<<<<<<<<<<<<\e[0m"
   yum install maven -y &>>${log}
 
-func_appprequ
+ func_appprequ
 
   echo -e "\e[36m>>>>>>>>>>>>>>> Build ${component} service <<<<<<<<<<<<<<<\e[0m"
   mvn clean package &>>${log}
@@ -74,5 +74,5 @@ func_appprequ
   echo -e "\e[36m>>>>>>>>>>>>>>> Load schema <<<<<<<<<<<<<<<\e[0m"
   mysql -h mysql.varundevops.online -uroot -pRoboShop@1 < /app/schema/${component}.sql
 
-func_systemd
+ func_systemd
 }
