@@ -64,15 +64,15 @@ func_java() {
 
 func_appprequ
 
-  echo -e "\e[36m>>>>>>>>>>>>>>>  Build ${component} service <<<<<<<<<<<<<<<\e[0m"
+  echo -e "\e[36m>>>>>>>>>>>>>>> Build ${component} service <<<<<<<<<<<<<<<\e[0m"
   mvn clean package &>>${log}
   mv target/ ${component}-1.0.jar  ${component}.jar &>>${log}
 
-  echo -e "\e[36m>>>>>>>>>>>>>>>  Install mysql client <<<<<<<<<<<<<<<\e[0m"
+  echo -e "\e[36m>>>>>>>>>>>>>>> Install mysql client <<<<<<<<<<<<<<<\e[0m"
   yum install mysql -y &>>${log}
 
-  echo -e "\e[36m>>>>>>>>>>>>>>>  Load schema <<<<<<<<<<<<<<<\e[0m"
-  mysql -h mysql.varundevops.online -uroot -pRoboShop@1 < /app/schema/shipping.sql
+  echo -e "\e[36m>>>>>>>>>>>>>>> Load schema <<<<<<<<<<<<<<<\e[0m"
+  mysql -h mysql.varundevops.online -uroot -pRoboShop@1 < /app/schema/${component}.sql
 
 func_systemd
 }
