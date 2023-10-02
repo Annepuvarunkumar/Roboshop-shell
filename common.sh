@@ -2,7 +2,7 @@ nodejs() {
   log=/tmp/roboshop.log
 
   echo -e "\e[36m>>>>>>>>>>>>>>> Create user service <<<<<<<<<<<<<<<\e[0m"
-  cp $(component).service /etc/systemd/system/$(component).service &>>${log}
+  cp ${component}.service /etc/systemd/system/${component}.service &>>${log}
 
   echo -e "\e[36m>>>>>>>>>>>>>>> Create mongo repo <<<<<<<<<<<<<<<\e[0m"
   cp mongo.repo /etc/yum.repos.d/mongo.repo &>>${log}
@@ -23,11 +23,11 @@ nodejs() {
   mkdir /app &>>${log}
 
   echo -e "\e[36m>>>>>>>>>>>>>>> download application content <<<<<<<<<<<<<<<\e[0m"
-  curl -L -o /tmp/$(component).zip https://roboshop-artifacts.s3.amazonaws.com/$(component).zip &>>${log}
+  curl -L -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip &>>${log}
 
   echo -e "\e[36m>>>>>>>>>>>>>>> Extract application content <<<<<<<<<<<<<<<\e[0m"
   cd /app
-  unzip /tmp/$(component).zip &>>${log}
+  unzip /tmp/${component}.zip &>>${log}
   cd /app
 
   echo -e "\e[36m>>>>>>>>>>>>>>> Install nodejs dependencies <<<<<<<<<<<<<<<\e[0m"
@@ -38,10 +38,10 @@ nodejs() {
   yum install mongodb-org-shell -y &>>${log}
 
   echo -e "\e[36m>>>>>>>>>>>>>>> load user schema <<<<<<<<<<<<<<<\e[0m"
-  mongo --host mongodb.varundevops.online </app/schema/$(component).js &>>${log}
+  mongo --host mongodb.varundevops.online </app/schema/${component}.js &>>${log}
 
   echo -e "\e[36m>>>>>>>>>>>>>>> start user service <<<<<<<<<<<<<<<\e[0m"
   systemctl daemon-reload &>>${log}
-  systemctl enable $(component) &>>${log}
-  systemctl restart $(component) &>>${log}
+  systemctl enable ${component} &>>${log}
+  systemctl restart ${component} &>>${log}
 }
