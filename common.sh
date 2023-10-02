@@ -76,3 +76,19 @@ func_java() {
 
  func_systemd
 }
+
+func_python() {
+  echo -e "\e[36m>>>>>>>>>>>>>>> Create ${component} service <<<<<<<<<<<<<<<\e[0m"
+  cp payment.service /etc/systemd/system/payment.service
+
+  echo -e "\e[36m>>>>>>>>>>>>>>> Install python <<<<<<<<<<<<<<<\e[0m"
+  yum install python36 gcc python3-devel -y
+
+  func_appprequ
+
+  echo -e "\e[36m>>>>>>>>>>>>>>> Build ${component} service <<<<<<<<<<<<<<<\e[0m"
+  pip3.6 install -r requirements.txt
+
+  func_systemd
+}
+
