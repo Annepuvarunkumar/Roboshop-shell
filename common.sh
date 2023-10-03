@@ -31,7 +31,7 @@ func_schema_setup() {
    echo -e "\e[36m>>>>>>>>>>>>>>> Install mongo client <<<<<<<<<<<<<<<\e[0m"
    yum install mongodb-org-shell -y &>>${log}
 
-   echo -e "\e[36m>>>>>>>>>>>>>>> load schema <<<<<<<<<<<<<<<\e[0m"
+   echo -e "\e[36m>>>>>>>>>>>>>>> load user schema <<<<<<<<<<<<<<<\e[0m"
    mongo --host mongodb.varundevops.online </app/schema/${component}.js &>>${log}
  fi
 
