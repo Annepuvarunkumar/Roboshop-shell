@@ -40,7 +40,7 @@ func_schema_setup() {
     yum install mysql -y &>>${log}
 
     echo -e "\e[36m>>>>>>>>>>>>>>> Load schema <<<<<<<<<<<<<<<\e[0m"
-    mysql -h mysql.varundevops.online -uroot -pRoboShop@1 < /app/schema/${component}.sql
+    mysql -h mysql.varundevops.online -uroot -pRoboShop@1 < /app/schema/${component}.sql &>>${log}
  fi
 }
 
