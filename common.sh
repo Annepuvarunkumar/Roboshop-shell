@@ -27,7 +27,7 @@ func_systemd() {
 }
 
 func_schema_setup() {
-  if [ "${schema_type}" == "mongodb"]; then
+  if [ "${schema_type}" == "mongodb" ]; then
    echo -e "\e[36m>>>>>>>>>>>>>>> Install mongo client <<<<<<<<<<<<<<<\e[0m"
    yum install mongodb-org-shell -y &>>${log}
 
@@ -35,7 +35,7 @@ func_schema_setup() {
    mongo --host mongodb.varundevops.online </app/schema/${component}.js &>>${log}
  fi
 
-  if [ "${schema_type}" == "mysql"]; then
+  if [ "${schema_type}" == "mysql" ]; then
     echo -e "\e[36m>>>>>>>>>>>>>>> Install mysql client <<<<<<<<<<<<<<<\e[0m"
     yum install mysql -y &>>${log}
 
