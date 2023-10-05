@@ -16,7 +16,7 @@ echo -e "\e[36m>>>>>>>>>>>>>>> Download Application Content <<<<<<<<<<<<<<<\e[0m
 curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend.zip &>>${log}
 func_exit_status
 
-cd /usr/share/nginx/html &>>${log}
+cd /usr/share/nginx/html
 
 echo -e "\e[36m>>>>>>>>>>>>>>> Extract Application content <<<<<<<<<<<<<<<\e[0m"
 unzip /tmp/frontend.zip &>>${log}
