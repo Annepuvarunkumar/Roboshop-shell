@@ -66,14 +66,11 @@ func_schema_setup() {
     mysql -h mysql.varundevops.online -uroot -pRoboShop@1 < /app/schema/${component}.sql &>>${log}
     func_exit_status
  fi
+
 }
 
 func_nodejs() {
   log=/tmp/roboshop.log
-
-  echo -e "\e[36m>>>>>>>>>>>>>>> Create ${component} service <<<<<<<<<<<<<<<\e[0m"
-  cp ${component}.service /etc/systemd/system/${component}.service &>>${log}
-  func_exit_status
 
   echo -e "\e[36m>>>>>>>>>>>>>>> Create mongo repo <<<<<<<<<<<<<<<\e[0m"
   cp mongo.repo /etc/yum.repos.d/mongo.repo &>>${log}
