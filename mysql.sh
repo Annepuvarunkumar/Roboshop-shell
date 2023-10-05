@@ -9,4 +9,4 @@ yum install mysql-community-server -y
 systemctl enable mysqld
 systemctl restart mysqld
 mysql_secure_installation --set-root-pass ${mysql_root_password}
-git
+
