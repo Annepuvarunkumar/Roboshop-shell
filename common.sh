@@ -9,8 +9,12 @@ func_exit_status() {
 }
 
 func_appprequ() {
+  echo -e "\e[36m>>>>>>>>>>>>>>> create ${component} service <<<<<<<<<<<<<<<\e[0m"
+  cp ${component}.service /etc/systemd/system/${component}.service &>>${log}
+  func_exit_status
+
   echo -e "\e[36m>>>>>>>>>>>>>>> create application user <<<<<<<<<<<<<<<\e[0m"
-  id useradd &>>${log}
+  id roboshop &>>${log}
   if [ $? -ne 0 ]; then
    useradd roboshop &>>${log}
   fi
@@ -125,6 +129,7 @@ func_python() {
   func_exit_status
 
   func_appprequ
+  sed -i "s/rabbitmq_app_password/${rabbitmq_app_password}/" /etc/systemd/system/${component}.service
 
   echo -e "\e[36m>>>>>>>>>>>>>>> Build ${component} service <<<<<<<<<<<<<<<\e[0m"
   pip3.6 install -r requirements.txt &>>${log}
