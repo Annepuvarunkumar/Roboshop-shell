@@ -84,7 +84,7 @@ func_nodejs() {
   yum install nodejs -y &>>${log}
   func_exit_status
 
- func_appprequ
+  func_appprequ
 
   echo -e "\e[36m>>>>>>>>>>>>>>> Install nodejs dependencies <<<<<<<<<<<<<<<\e[0m"
   npm install &>>${log}
