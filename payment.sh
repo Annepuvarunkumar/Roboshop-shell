@@ -5,4 +5,5 @@ if [ -z "${rabbitmq_root_password}" ]; then
   echo INput RabbitMQ AppUser Password missing
   exit 1
 fi
+
 func_python
