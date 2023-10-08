@@ -10,7 +10,6 @@ yum install golang -y
 
 
 
-
 useradd roboshop
 mkdir /app
 
