@@ -136,3 +136,24 @@ func_python() {
   func_systemd
 }
 
+func_golang() {
+  echo -e "\e[36m>>>>>>>>>>>>>>> Install ${component} service  <<<<<<<<<<<<<<<\e[0m"
+  cp dispatch.service /etc/systemd/system/dispatch.service &>>${log}
+  func_exit_status
+
+
+  echo -e "\e[36m>>>>>>>>>>>>>>> Install golang <<<<<<<<<<<<<<<\e[0m"
+  yum install golang -y &>>${log}
+  func_exit_status
+
+  func_appprequ
+
+  echo -e "\e[36m>>>>>>>>>>>>>> Build ${component} dependencies <<<<<<<<<<<<<<<\e[0m"
+  go mod init dispatch &>>${log}
+  go get &>>${log}
+  go build &>>${log}
+  func_exit_status
+
+  func_systemd
+}
+
