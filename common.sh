@@ -138,7 +138,7 @@ func_python() {
 
 func_golang() {
   echo -e "\e[36m>>>>>>>>>>>>>>> Install ${component} service  <<<<<<<<<<<<<<<\e[0m"
-  cp dispatch.service /etc/systemd/system/dispatch.service &>>${log}
+  cp ${component}.service /etc/systemd/system/${component}.service &>>${log}
   func_exit_status
 
 
@@ -148,8 +148,8 @@ func_golang() {
 
   func_appprequ
 
-  echo -e "\e[36m>>>>>>>>>>>>>> Build ${component} dependencies <<<<<<<<<<<<<<<\e[0m"
-  go mod init dispatch &>>${log}
+  echo -e "\e[36m>>>>>>>>>>>>>> Build ${component} service <<<<<<<<<<<<<<<\e[0m"
+  go mod init ${component} &>>${log}
   go get &>>${log}
   go build &>>${log}
   func_exit_status
